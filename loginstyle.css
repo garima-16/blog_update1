@@ -46,7 +46,7 @@ a:hover{
 
 }
 .left{
-    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0,0,0,0.5)),url(bookeria/ee2.jpg);
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0,0,0,0.5)),url(images/ee2.jpg);
     background-size: cover;
 }
 .left .copy{

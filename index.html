@@ -4,10 +4,35 @@
 <meta charset="UTF-8">
 <title>OurApp</title>
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i" rel="stylesheet">
-<link rel="stylesheet" href="/main.css">
+
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Nova+Round&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Nova+Round&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-database.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>  
+    
+  <script>
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+ var firebaseConfig = {
+    apiKey: "AIzaSyBn444PyKdGF6yi8G7cIVV_Ro6MUccj1EQ",
+    authDomain: "blog-f9adb.firebaseapp.com",
+    databaseURL: "https://blog-f9adb.firebaseio.com",
+    projectId: "blog-f9adb",
+    storageBucket: "blog-f9adb.appspot.com",
+    messagingSenderId: "924999090564",
+    appId: "1:924999090564:web:36d31fd081a4ddb29a9dd1"
+  };
+
+     
+     firebase.initializeApp(firebaseConfig);
+     const auth =  firebase.auth ();
+    firebase.analytics();
+     
+
+ </script>
 <style>
   *{
     margin: 0;
@@ -23,7 +48,7 @@
     font-family: 'Nova Round', cursive;
   }
   .wrap{
-    background: rgba(0,0,0,0.5) url(bookeria/ee5.jpg) no-repeat;
+    background: rgba(0,0,0,0.5) url(images/ee5.jpg) no-repeat;
     background-position: center;
     background-size: cover;
     min-height: 100vh;
@@ -117,7 +142,7 @@
      <h1>"You can't use creativity.The more you use, The more you have"</h1>           
     
      <div class="btn-group">
-       <a href="signup.html" class="color1">get started</a>
+       <a href="signup.html" class="color1">Get started</a>
        <a href="#" class="color1">learn more</a>
 
      </div>
