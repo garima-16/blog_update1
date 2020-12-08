@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <title> &mdash; Website Template by Colorlib</title>
+  <title>Our App</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
 
@@ -184,7 +184,7 @@
 
               <div class="row"align-items-center>
                 <div class="col-lg-6">
-                  <p><p><a href="userprofile.html"><button class="btn btn-primary" type="button" id ="publish-button">Publish</button></a></p></p>
+                  <p><p><a href="#"><button class="btn btn-primary" type="button" id ="publish-button">Publish</button></a></p></p>
                   
 
                 </div>
@@ -204,11 +204,11 @@
 
       $("#publish-button").click(function(){
         var details={
-          id:$("#title").val()+Date.now(),
+          id:$("#title").val(),
           title:$("#title").val(),
           category:$("#cat").val(),
           content:$("#message").val(),
-          
+          time: `${new Date().toISOString().split('T')[0]}`
        
         }
         // var file={
@@ -225,7 +225,8 @@
           firebase.database().ref("users/"+userId+"/blogs/"+details.id).set(details)
          
 
-        }  
+        } 
+         
     </script>  
 
   
