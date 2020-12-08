@@ -157,6 +157,7 @@
     
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
+  
       if (event.target == modal) {
         modal.style.display = "none";
       }
@@ -195,6 +196,7 @@ firebase.auth().onAuthStateChanged(function(user) {
   localStorage.setItem("pid",user.owner)
   localStorage.setItem("pid1",user.owner)
   localStorage.setItem("pid2",user.owner)
+ 
   }
   //window.location.replace("file:///C:/Users/yashu/Downloads/blog_update1-master/blog_update1-master/index.html") 
 })
@@ -208,6 +210,7 @@ firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error
   console.log(errorMessage);
   alert(errorMessage);
 });
+
 }
 // function Userlogin(h){
 //   var database=firebase.database()
