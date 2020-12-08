@@ -187,8 +187,9 @@ var firebaseConfig = {
     console.log(userId)
  
                  
-  firebase.database().ref(`users`+userId).once('value').then(function(snapshot){
-
+    localStorage.setItem("pid3",userId)
+    // //  
+    firebase.database().ref("users/"+userId).once('value').then(function(snapshot){
 document.getElementById("username").value=(snapshot.val() && snapshot.val().email)
   
 })
