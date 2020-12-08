@@ -145,7 +145,6 @@ var firebaseConfig = {
           <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
           <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/>
         </svg>
-        <form>
          <div class="row">  
           <div class="col-lg-6">
             <div class="form-group">
@@ -154,7 +153,6 @@ var firebaseConfig = {
             </div>
           </div>
           </div>
-        </form>
       </a></li>
        
 
@@ -187,15 +185,13 @@ var firebaseConfig = {
 <script  type="text/javascript">
     var userId=localStorage.getItem("pid")
     console.log(userId)
-    localStorage.setItem("pid3",userId)
-    // //  
-    firebase.database().ref("users/"+userId).once('value').then(function(snapshot){
+ 
+                 
+  firebase.database().ref(`users`+userId).once('value').then(function(snapshot){
 
 document.getElementById("username").value=(snapshot.val() && snapshot.val().email)
-
+  
 })
-
 </script>
-
 </body>
 </html>
