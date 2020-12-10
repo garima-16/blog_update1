@@ -193,7 +193,7 @@
 
               <div class="row"align-items-center>
                 <div class="col-lg-6">
-                  <p><p><a href="#"><button class="btn btn-primary" type="button" id ="publish-button">Publish</button></a></p></p>
+                  <p><p><a href="myblog.html"><button class="btn btn-primary" type="button" id ="publish-button">Publish</button></a></p></p>
                   
 
                 </div>
@@ -207,10 +207,16 @@
       </div>
     </div>
     <script type="text/javascript">
-       var userId=localStorage.getItem("pid2")
-      
-       console.log(userId)
-      
+        var userId=localStorage.getItem("pid")
+        console.log(userId)
+         var usId=localStorage.getItem("pid6")
+       console.log(usId)
+       firebase.database().ref("users/"+userId+"/blogs/"+usId).once('value').then(function(snapshot){
+    document.getElementById("title").value=(snapshot.val() && snapshot.val().title)
+     document.getElementById("cat").value=(snapshot.val() && snapshot.val().category)
+     document.getElementById("message").value=(snapshot.val() && snapshot.val().content)
+    
+       })
 
       $("#publish-button").click(function(){
         var details={
@@ -233,7 +239,7 @@
         function addDetails(details){
       
           var database=firebase.database()
-          firebase.database().ref("users/"+userId+"/blogs/"+details.id).set(details)
+          firebase.database().ref("users/"+userId+"/blogs/"+details.id).update(details)
          
 
         } 
