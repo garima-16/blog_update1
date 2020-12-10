@@ -259,3 +259,24 @@ label{
         
     }
 }
+
+.topnav {
+  background-color:rgba(0, 0, 0, 0.753);
+  overflow: hidden;
+}
+
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 51px;
+  text-decoration: none;
+  font: 400 18px Lato, serif;
+}
+
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
