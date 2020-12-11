@@ -11,6 +11,10 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i" rel="stylesheet">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-database.js"></script>
@@ -90,11 +94,21 @@ var firebaseConfig = {
       <a href="index.html">Log out</a>
     </div>
 
+
 <!--If u want to write anything in right section start it from here-->
+<div class="container" id="show-heros">
+  <h3>Show blogs here</h3>
+</div>
+<!-- <div class="container">
+  
+  <ul class="list-group">
+    <li class="list-group-item list-group-item-info"></li>
+    <li class="list-group-item list-group-item-info"></li>
 
+  </ul>
 
-
-  </div>
+  </div> -->
+  
 </div>
 <script type="text/javascript">
 
@@ -106,6 +120,46 @@ var firebaseConfig = {
 document.getElementById("bio").value=(snapshot.val() && snapshot.val().bio)
 
 })
+var heroReference=firebase.database().ref().child("users/"+userId+"/blogs")
+heroReference.on("value",function(snapshot){
+  $("#show-heros").empty()
+    var heroHTMLitem="<h3>All posts</h3>"
+  
+  snapshot.forEach(function(childsnapshot){
+    var item=childsnapshot.val()
+    item.key=childsnapshot.key
+
+    console.log(item.key)
+    localStorage.setItem("pid5",item.key)
+    localStorage.setItem("pid6",item.key)
+    heroHTMLitem+="<div class 'heroHTMLitem'><hr><ul class 'list-group'>"
+    heroHTMLitem+="<li class 'list-group-item list-group-item-info'>"+ item.key+"</li>";
+    heroHTMLitem+="</ul></div>"
+    heroHTMLitem+="<button type ='button'class='btn-danger delete-hero' id="+item.id+">Delete</button>"
+    heroHTMLitem+="<button type ='button'class='btn-default edit-hero' id="+item.id+">Edit</button>"
+  })
+  
+$("#show-heros").html(heroHTMLitem)
+
+})
+$(document).on("click",".delete-hero",function(){
+  
+  var uId=localStorage.getItem("pid5")
+
+
+  firebase.database().ref("users/"+userId+"/blogs/"+uId).remove()
+})
+$(document).on("click",".edit-hero",function(){
+  
+
+  window.location.replace("file:///C:/Users/yashu/Documents/GitHub/blog_update1/editingpost.html") 
+
+
+ 
+
+})
+
+
   </script>
 </body>
 </html>
