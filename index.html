@@ -5,6 +5,30 @@
 <title>OurApp</title>
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i" rel="stylesheet">
 
+<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;700;900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="fonts/icomoon/style.css">
+
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/jquery-ui.css">
+<link rel="stylesheet" href="css/owl.carousel.min.css">
+<link rel="stylesheet" href="css/owl.theme.default.min.css">
+<link rel="stylesheet" href="css/owl.theme.default.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="css/jquery.fancybox.min.css">
+
+<link rel="stylesheet" href="css/bootstrap-datepicker.css">
+
+<link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+<link rel="stylesheet" href="fonts/flaticon-covid/font/flaticon.css">
+
+<link rel="stylesheet" href="css/aos.css">
+
+<link rel="stylesheet" href="css/style.css">
+
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Nova+Round&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Nova+Round&display=swap" rel="stylesheet">
@@ -151,14 +175,131 @@
   <svg class="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
     <path fill="#fff" fill-opacity="1" d="M0,256L48,224C96,192,192,128,288,112C384,96,480,128,576,170.7C672,213,768,267,864,245.3C960,224,1056,128,1152,117.3C1248,107,1344,181,1392,218.7L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
   </svg>     
-
+ 
+        
 
  </div>
 
 
 </div>
+<div class="site-section">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-lg-7 mx-auto text-center">
+        <h2 class="mb-4 section-heading">Latest News &amp; Articles</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex officia quas, modi sit eligendi numquam!</p>
+      </div>
+    </div>
+    <div class="container" id="show-heros">
+      <h3>Show blogs here</h3>
+    </div>
 
+    <!-- <div class="row">
+      <div class="col-sm-6 col-md-6 col-lg-4 mb-5">
+        <div class="post-entry">
+          <a href="#" class="thumb">
+            <span class="date">30 Jul, 2020</span>
+            <img src="" alt="Image" class="img-fluid">
+          </a>
+          <div class="post-meta text-center">
+            <a href="">
+              <span class="icon-user"></span>
+              <span>Admin</span>
+            </a>
+            <a href="#">
+              <span class="icon-comment"></span>
+              <span>3 Comments</span>
+            </a>
+          </div>
+          <h3><a href="#">How Coronavirus Very Contigous</a></h3>
+        </div>
+      </div>
+      </div>
+      </div>
+      </div> -->
+      <script type="text/javascript">
 
+        
+        // //  
+       
+      
+      
+      var heroReference=firebase.database().ref().child("blogs/")
+      heroReference.on("value",function(snapshot){
+        $("#show-heros").empty()
+          var heroHTMLitem="<h3>All posts</h3>"
+        
+        snapshot.forEach(function(childsnapshot){
+          var item=childsnapshot.val()
+          item.key=childsnapshot.key
+      
+          console.log(item.key)
+          localStorage.setItem("pid5",item.key)
+          localStorage.setItem("pid6",item.key)
+          // heroHTMLitem+="<div class 'row'>"
+          // heroHTMLitem+="<div class 'col-sm-6 col-md-6 col-lg-4 mb-5>"
+          // heroHTMLitem+="<div class'post-entry'>"
+          // heroHTMLitem+="<a href'#'' class'thumb'>"
+          // heroHTMLitem+="<span class'date'>"+item.key+"</span>"
+          // heroHTMLitem+="</a>" 
+          // heroHTMLitem+="<div class 'post-meta text-center'>"
+          // heroHTMLitem+="<a href''>"
+          // heroHTMLitem+="<span class 'icon-user'></span>"
+          // heroHTMLitem+= "<span>Admin</span>"   
+          // heroHTMLitem+="  </a>"    
+          // heroHTMLitem+="  <a href'#'>"
+          // heroHTMLitem+="<span class'icon-comment'></span>"
+          // heroHTMLitem+=    "<span>3 Comments</span>"
+          // heroHTMLitem+=  "  </a> </div></div> </div> </div>" 
+         
+        heroHTMLitem+="<div class='card-deck>"
+         heroHTMLitem+=  "<div class='card bg-danger'>"
+         heroHTMLitem+="<div class='card-body text-center'><p class='card-text'>"+item.key+"</p>"
+         heroHTMLitem+="</div></div></div>"
+     
+       
+          
+          // heroHTMLitem+="<div class 'post-entry'><hr><ul class 'list-group'>"
+          // heroHTMLitem+="<li class 'list-group-item list-group-item-info'>"+ item.key+"</li>";
+          // heroHTMLitem+="</ul></div>"
+          // heroHTMLitem+="<button type ='button'class='btn-danger delete-hero' id="+item.id+">Delete</button>"
+          // heroHTMLitem+="<button type ='button'class='btn-default edit-hero' id="+item.id+">Edit</button>"
+        })
+        
+      $("#show-heros").html(heroHTMLitem)
+      
+      })
+      // $(document).on("click",".delete-hero",function(){
+        
+      //   var uId=localStorage.getItem("pid5")
+      
+      
+      //   firebase.database().ref("users/"+userId+"/blogs/"+uId).remove()
+      // })
+      // $(document).on("click",".edit-hero",function(){
+        
+      
+      //   window.location.replace("file:///C:/Users/yashu/Documents/GitHub/blog_update1/editingpost.html") 
+      
+      
+       
+      
+      // })
+    </script>
 
 </body>
+<script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/jquery-ui.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.countdown.min.js"></script>
+  <script src="js/jquery.easing.1.3.js"></script>
+  <script src="js/aos.js"></script>
+  <script src="js/jquery.fancybox.min.js"></script>
+  <script src="js/jquery.sticky.js"></script>
+  <script src="js/isotope.pkgd.min.js"></script>
+
+
+  <script src="js/main.js"></script>
 </html>
