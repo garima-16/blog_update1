@@ -34,7 +34,7 @@
      
 
  </script>
- <style>
+ <!-- <style>
   body {font-family: Arial, Helvetica, sans-serif;}
   
   /* The Modal (background) */
@@ -79,7 +79,7 @@
   
   </style>
 
- 
+  -->
 </head>
 
 <body>
@@ -135,10 +135,10 @@
   </div> -->
    <!-- Just remove a href below if u dont want any action on SignUp button -->
 <button class="signup-btn"  type="submit"><a href="#" id="myBtn">Sign up</a></button> 
-<div id="myModal" class="modal">
+<!-- <div id="myModal" class="modal">
 
   <!-- Modal content -->
-  <div class="modal-content" >
+  <!-- <div class="modal-content" >
     <span class="close">&times;</span>
     <p ><centre>SIGNUP SUCCESSFULL</p></centre>
     <button class="ok"  type="submit"><a href="index.html" id="mybBtn">OK</a></button> 
@@ -146,9 +146,9 @@
 
   </div>
 
-</div>
+</div> -->
 
-<script>
+<!-- <script>
 // Get the modal
 var modal = document.getElementById("myModal");
 
@@ -180,7 +180,7 @@ window.onclick = function(event) {
         
                 
                 
-               
+                --> 
 
   <section class="copy legal">
     <p><span class="small">by continuing you agree to accept out<br><a href="#">privacy policy</a>&amp; <a href="#">terms of service</a></span></p>
@@ -204,7 +204,11 @@ $("#myBtn").click(function(){
 });
 
 function CreateNewUser(email,password){
-firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+firebase.auth().createUserWithEmailAndPassword(email, password).then(function(){
+  alert( 'User Registration Successfull')
+  window.location.href="index.html"
+})
+  .catch(function(error) {
   // Handle Errors here.
   var errorCode = error.code;
   var errorMessage = error.message;
@@ -224,7 +228,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     currentUser=user;
      writeUserData(user)
     console.log(currentUser.email + " has logged in ");
-    
+    alert()
     //window.location.replace("file:///C:/Users/yashu/Downloads/blog_update1-master/blog_update1-master/index.html")
   
   }

@@ -123,10 +123,10 @@
   <!-- Just remove a href below if u dont want any action on login button -->
  
     <button type="submit" id="signup-btn" class="signup-btn"  ><a href="#" id="myBtn">LOGIN</a></button>
-    <div id="myModal" class="modal">
+    <!-- <div id="myModal" class="modal">
 
-      <!-- Modal content -->
-      <div class="modal-content" >
+       Modal content -->
+      <!-- <div class="modal-content" >
         <span class="close">&times;</span>
         <p ><centre>LOGIN SUCCESSFULL</p></centre>
         <button class="ok"  type="submit"><a href="myblog.html" id="mybBtn">OK</a></button> 
@@ -161,11 +161,11 @@
         modal.style.display = "none";
       }
     }
-    </script>
-    
-  </div>
+    </script> -->
+     
+  <!-- </div>
 </form>
-  </div>
+  </div> -->
 </div>
 <script>
   
@@ -195,14 +195,17 @@ firebase.auth().onAuthStateChanged(function(user) {
   localStorage.setItem("pid",user.owner)
   localStorage.setItem("pid1",user.owner)
   localStorage.setItem("pid2",user.owner)
-  
+ 
   }
   //window.location.replace("file:///C:/Users/yashu/Downloads/blog_update1-master/blog_update1-master/index.html") 
 })
 
 function SignIn(email,password){
 
-firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+firebase.auth().signInWithEmailAndPassword(email, password).then(function(){
+  alert( 'Login Successfull')
+  window.location.href="myblog.html"
+}).catch(function(error) {
   // Handle Errors here.
   var errorCode = error.code;
   var errorMessage = error.message;
