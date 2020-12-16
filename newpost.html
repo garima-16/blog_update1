@@ -198,7 +198,7 @@
 
                 </div>
               </div>
-
+              
             
           
               
@@ -210,7 +210,8 @@
        var userId=localStorage.getItem("pid2")
       
        console.log(userId)
-      
+       var username=localStorage.getItem("usernames")
+       console.log(username)
 
       $("#publish-button").click(function(){
         var details={
@@ -220,13 +221,11 @@
           category:$("#cat").val(),
           content:$("#message").val(),
           date: `${new Date().toISOString().split('T')[0]}`
-       
+        
         }
-        // var file={
-        //   files:$("#myFile").val()
-        // }
+       
         console.log(details)
-      
+       
 
         addDetails(details)
        });
@@ -234,8 +233,12 @@
       
           var database=firebase.database()
           firebase.database().ref("users/"+userId+"/blogs/"+details.id).set(details)
-         
-
+          
+          firebase.database().ref('blogs/'+details.id).set({
+    details,
+    writtenby:username
+    
+  })
         } 
          
     </script>  

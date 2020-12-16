@@ -209,7 +209,7 @@
         }
         
         console.log(details)
-        
+        usernames(details)
         addDetails(details)
       });
       function addDetails(details){
@@ -231,10 +231,14 @@
             
             
           // })
+         
         }
-
-  
+        
+        function usernames(details){
+          console.log(details.username)
+        localStorage.setItem("usernames",details.username)
        
+        }
       
 
      

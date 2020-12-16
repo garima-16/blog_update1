@@ -25,6 +25,30 @@
   <link rel="stylesheet" href="css/aos.css">
 
   <link rel="stylesheet" href="css/style.css">
+  <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-database.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>  
+  
+  <script>
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyBn444PyKdGF6yi8G7cIVV_Ro6MUccj1EQ",
+    authDomain: "blog-f9adb.firebaseapp.com",
+    databaseURL: "https://blog-f9adb.firebaseio.com",
+    projectId: "blog-f9adb",
+    storageBucket: "blog-f9adb.appspot.com",
+    messagingSenderId: "924999090564",
+    appId: "1:924999090564:web:36d31fd081a4ddb29a9dd1"
+  };
+  
+  
+     firebase.initializeApp(firebaseConfig);
+     const auth =  firebase.auth ();
+    firebase.analytics();
+  
+  
+  </script>
 
 </head>
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -129,13 +153,16 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex officia quas, modi sit eligendi numquam!</p>
           </div>
         </div>
+        <div class="container" id="show-heros">
+          <h3>Show blogs here</h3>
+        </div>
 
         <div class="row">
           <div class="col-sm-6 col-md-6 col-lg-4 mb-5">
             <div class="post-entry">
               <a href="#" class="thumb">
                 <span class="date">30 Jul, 2020</span>
-                <img src="images/hero_1.jpg" alt="Image" class="img-fluid">
+                <img src="" alt="Image" class="img-fluid">
               </a>
               <div class="post-meta text-center">
                 <a href="">
@@ -154,7 +181,7 @@
             <div class="post-entry">
               <a href="#" class="thumb">
                 <span class="date">30 Jul, 2020</span>
-                <img src="images/hero_2.jpg" alt="Image" class="img-fluid">
+                <img src="" alt="Image" class="img-fluid">
               </a>
               <div class="post-meta text-center">
                 <a href="">
@@ -173,7 +200,7 @@
             <div class="post-entry">
               <a href="#" class="thumb">
                 <span class="date">30 Jul, 2020</span>
-                <img src="images/hero_1.jpg" alt="Image" class="img-fluid">
+                <img src="" alt="Image" class="img-fluid">
               </a>
               <div class="post-meta text-center">
                 <a href="">
@@ -193,7 +220,7 @@
             <div class="post-entry">
               <a href="#" class="thumb">
                 <span class="date">30 Jul, 2020</span>
-                <img src="images/hero_1.jpg" alt="Image" class="img-fluid">
+                <img src="" alt="Image" class="img-fluid">
               </a>
               <div class="post-meta text-center">
                 <a href="">
@@ -212,7 +239,7 @@
             <div class="post-entry">
               <a href="#" class="thumb">
                 <span class="date">30 Jul, 2020</span>
-                <img src="images/hero_2.jpg" alt="Image" class="img-fluid">
+                <img src="" alt="Image" class="img-fluid">
               </a>
               <div class="post-meta text-center">
                 <a href="">
@@ -231,7 +258,7 @@
             <div class="post-entry">
               <a href="#" class="thumb">
                 <span class="date">30 Jul, 2020</span>
-                <img src="images/hero_1.jpg" alt="Image" class="img-fluid">
+                <img src="" alt="Image" class="img-fluid">
               </a>
               <div class="post-meta text-center">
                 <a href="">
@@ -328,6 +355,48 @@
     </div>
 
   </div> <!-- .site-wrap -->
+  <script>
+    var heroReference=firebase.database().ref().child("users/"+userId+"/blogs")
+heroReference.on("value",function(snapshot){
+  $("#show-heros").empty()
+    var heroHTMLitem="<h3>All posts</h3>"
+  
+  snapshot.forEach(function(childsnapshot){
+    var item=childsnapshot.val()
+    item.key=childsnapshot.key
+
+    console.log(item.key)
+    localStorage.setItem("pid5",item.key)
+    localStorage.setItem("pid6",item.key)
+    heroHTMLitem+="<div class 'heroHTMLitem'><hr><ul class 'list-group'>"
+    heroHTMLitem+="<li class 'list-group-item list-group-item-info'>"+ item.key+"</li>";
+    heroHTMLitem+="</ul></div>"
+    heroHTMLitem+="<button type ='button'class='btn-danger delete-hero' id="+item.id+">Delete</button>"
+    heroHTMLitem+="<button type ='button'class='btn-default edit-hero' id="+item.id+">Edit</button>"
+  })
+  
+$("#show-heros").html(heroHTMLitem)
+
+})
+$(document).on("click",".delete-hero",function(){
+  
+  var uId=localStorage.getItem("pid5")
+
+
+  firebase.database().ref("users/"+userId+"/blogs/"+uId).remove()
+})
+$(document).on("click",".edit-hero",function(){
+  
+
+  window.location.replace("file:///C:/Users/yashu/Documents/GitHub/blog_update1/editingpost.html") 
+
+
+ 
+
+})
+
+
+  </script>
 
   <script src="js/jquery-3.3.1.min.js"></script>
   <script src="js/jquery-ui.js"></script>
