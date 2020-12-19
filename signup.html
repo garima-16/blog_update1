@@ -206,7 +206,7 @@ $("#myBtn").click(function(){
 function CreateNewUser(email,password){
 firebase.auth().createUserWithEmailAndPassword(email, password).then(function(){
   alert( 'User Registration Successfull')
-  window.location.href="index.html"
+
 })
   .catch(function(error) {
   // Handle Errors here.
@@ -226,9 +226,14 @@ firebase.auth().onAuthStateChanged(function(user) {
    
     var email = user.email;
     currentUser=user;
-     writeUserData(user)
+   
     console.log(currentUser.email + " has logged in ");
-    alert()
+    firebase.database().ref('users/'+user.uid).set({
+    
+    email:user.email
+   
+  })
+  // 
     //window.location.replace("file:///C:/Users/yashu/Downloads/blog_update1-master/blog_update1-master/index.html")
   
   }
@@ -236,15 +241,15 @@ firebase.auth().onAuthStateChanged(function(user) {
 })
 
 
-function writeUserData(user){
+// function writeUserData(user){
  
-  firebase.database().ref('users/'+user.uid).set({
+//   firebase.database().ref('users/'+user.uid).set({
     
-    email:user.email
+//     email:user.email
     
-  })
+//   })
   
-}
+// }
 //
 
 </script>
