@@ -130,7 +130,7 @@ var firebaseConfig = {
          <li><a href="index.html">Home</a></li>
          
          <li><a href="newpost.html">Myblog</a></li>
-         <li><a href="#">Chat</a></li>
+         <li id="logout-btn"><a href="#">LogOut</a></li>
 
          <!--<li><a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -152,11 +152,10 @@ var firebaseConfig = {
               <input type="text" id="username" class="form-control"  >
             </div>
           </div>
-          </div>
-      </a></li>
+          </div></li>
+      </a>
        
-
-     
+      
 
         
           
@@ -194,9 +193,14 @@ var firebaseConfig = {
 document.getElementById("username").value=(snapshot.val() && snapshot.val().email)
   
 })
+
 </script>
-<style>
-  
-</style>
+<script>
+  $("logout-btn").click(function(){
+    console.log('Logged Out')
+  firebase.auth().signOut();
+  console.log('Logged Out')
+})
+</script>
 </body>
 </html>
