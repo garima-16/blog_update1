@@ -149,6 +149,7 @@ $(document).on("click",".delete-hero",function(){
 
 
   firebase.database().ref("users/"+userId+"/blogs/"+uId).remove()
+  firebase.database().ref("blogs/"+uId).remove()
 })
 $(document).on("click",".edit-hero",function(){
   
