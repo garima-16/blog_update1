@@ -202,7 +202,9 @@ div .card {
     <div class="container" id="show-heros">
       <h3>Show blogs here</h3>
     </div>
-
+    <div class="containers" id="show-heross">
+      <h3>Show sorted blogs here</h3>
+    </div>
   
       <script type="text/javascript">
 
@@ -220,10 +222,11 @@ div .card {
           var item=childsnapshot.val()
           item.key=childsnapshot.key
       
-          console.log(item.key)
+          // console.log(item.key)
           
           localStorage.setItem("pid5",item.key)
           localStorage.setItem("pid6",item.key)
+          localStorage.setItem("pi1",item.key)
         
          
         heroHTMLitem+="<div class='row'><div class='card bg-light mb-3' style='width: 18rem;''>"
@@ -236,34 +239,489 @@ div .card {
        
        
           
-          // heroHTMLitem+="<div class 'post-entry'><hr><ul class 'list-group'>"
-          // heroHTMLitem+="<li class 'list-group-item list-group-item-info'>"+ item.key+"</li>";
-          // heroHTMLitem+="</ul></div>"
-          // heroHTMLitem+="<button type ='button'class='btn-danger delete-hero' id="+item.id+">Delete</button>"
-          // heroHTMLitem+="<button type ='button'class='btn-default edit-hero' id="+item.id+">Edit</button>"
+      
         })
        
-        
-      $("#show-heros").html(heroHTMLitem)
+        $("#show-heros").html(heroHTMLitem)
+      
+      
       
       })
-      // $(document).on("click",".delete-hero",function(){
-        
-      //   var uId=localStorage.getItem("pid5")
+      </script>
       
-      
-      //   firebase.database().ref("users/"+userId+"/blogs/"+uId).remove()
-      // })
-      // $(document).on("click",".edit-hero",function(){
-        
-      
-      //   window.location.replace("file:///C:/Users/yashu/Documents/GitHub/blog_update1/editingpost.html") 
-      
-      
+    <div class='container'>
+         <div class='row' >
+      <div class='card bg-light mb-3' style='height: 3rem; width: 12rem;'>
+      <div class='card-body'>
+   <h5 class='card-title'onclick="edu()">Education</h5>
+  </div></div><div></div>
+  <script>
+     function edu(){
+    var heroReference=firebase.database().ref().child("blogs/")
+  heroReference.on("value",function(snapshot){
+    snapshot.forEach(function(childsnapshot){
+      var item=childsnapshot.val()
+      item.key=childsnapshot.key
+      $("#show-heross").empty()
+          var heroHTMLitem="<h3>All sorted posts</h3>"
+
+  var userRef=firebase.database().ref('blogs/'+item.key)
+  userRef.orderByChild("category").equalTo("Education").once('value',function(snapshot){
+    snapshot.forEach(function(childsnapshot){
+    var ite=childsnapshot.val()
+
+
+   console.log(ite)
+    heroHTMLitem+="<div class='row'><div class='card bg-light mb-3' style='width: 18rem;''>"
+          heroHTMLitem+="<div class='card-body'>"
+           heroHTMLitem+="<h5 class='card-title'>"+ite.title+"</h5>"
+           heroHTMLitem+="<a href='blogs.html' class='card-link'> read more..</a>"
+         heroHTMLitem+= "<p class='card-text'>"+ite.content+"</p>"
        
+         heroHTMLitem+="</div></div><div></div>"
+         
+       
+  })
+  $("#show-heross").html(heroHTMLitem)
       
-      // })
-    </script>
+})
+
+})
+
+})}
+
+  </script>
+  <div class="container">
+   <div class='row' >
+    <div class='card bg-light mb-3' style='height: 3rem; width: 12rem;'>
+    <div class='card-body'>
+ <h5 class='card-title' onclick="ent()">Entertainment</h5>
+</div></div><div></div>
+<script>
+  function ent(){
+    var heroReference=firebase.database().ref().child("blogs/")
+  heroReference.on("value",function(snapshot){
+    snapshot.forEach(function(childsnapshot){
+      var item=childsnapshot.val()
+      item.key=childsnapshot.key
+      $("#show-heross").empty()
+          var heroHTMLitem="<h3>All sorted posts</h3>"
+  
+  var userRef=firebase.database().ref('blogs/'+item.key)
+  userRef.orderByChild("category").equalTo("Entertainment").once('value',function(snapshot){
+    snapshot.forEach(function(childsnapshot){
+    var ite=childsnapshot.val()
+
+
+   console.log(ite)
+    heroHTMLitem+="<div class='row'><div class='card bg-light mb-3' style='width: 18rem;''>"
+          heroHTMLitem+="<div class='card-body'>"
+           heroHTMLitem+="<h5 class='card-title'>"+ite.title+"</h5>"
+           heroHTMLitem+="<a href='blogs.html' class='card-link'> read more..</a>"
+         heroHTMLitem+= "<p class='card-text'>"+ite.content+"</p>"
+       
+         heroHTMLitem+="</div></div><div></div>"
+         
+       
+  })
+  $("#show-heross").html(heroHTMLitem)
+})
+  })
+  })}
+  </script>
+<div class="container">
+  <div class='row' >
+   <div class='card bg-light mb-3' style='height: 3rem; width: 12rem;'>
+   <div class='card-body'>
+<h5 class='card-title'onclick="hea()" >Health</h5>
+</div></div><div></div>
+<script>
+  function hea(){
+    var heroReference=firebase.database().ref().child("blogs/")
+  heroReference.on("value",function(snapshot){
+    snapshot.forEach(function(childsnapshot){
+      var item=childsnapshot.val()
+      item.key=childsnapshot.key
+      $("#show-heross").empty()
+          var heroHTMLitem="<h3>All sorted posts</h3>"
+  
+  var userRef=firebase.database().ref('blogs/'+item.key)
+  userRef.orderByChild("category").equalTo("Health").once('value',function(snapshot){
+    snapshot.forEach(function(childsnapshot){
+    var ite=childsnapshot.val()
+
+
+   console.log(ite)
+    heroHTMLitem+="<div class='row'><div class='card bg-light mb-3' style='width: 18rem;''>"
+          heroHTMLitem+="<div class='card-body'>"
+           heroHTMLitem+="<h5 class='card-title'>"+ite.title+"</h5>"
+           heroHTMLitem+="<a href='blogs.html' class='card-link'> read more..</a>"
+         heroHTMLitem+= "<p class='card-text'>"+ite.content+"</p>"
+       
+         heroHTMLitem+="</div></div><div></div>"
+         
+       
+  })
+  $("#show-heross").html(heroHTMLitem)
+  })
+  
+  })
+  })}
+  </script>
+<div class="container">
+  <div class='row' >
+   <div class='card bg-light mb-3' style='height: 3rem; width: 12rem;'>
+   <div class='card-body'>
+<h5 class='card-title' onclick="nov()">Novels</h5>
+</div></div><div></div>
+<script>
+  function nov(){
+    var heroReference=firebase.database().ref().child("blogs/")
+  heroReference.on("value",function(snapshot){
+    snapshot.forEach(function(childsnapshot){
+      var item=childsnapshot.val()
+      item.key=childsnapshot.key
+      $("#show-heross").empty()
+          var heroHTMLitem="<h3>All sorted posts</h3>"
+  
+  var userRef=firebase.database().ref('blogs/'+item.key)
+  userRef.orderByChild("category").equalTo("Novels").once('value',function(snapshot){
+    snapshot.forEach(function(childsnapshot){
+    var ite=childsnapshot.val()
+
+
+   console.log(ite)
+    heroHTMLitem+="<div class='row'><div class='card bg-light mb-3' style='width: 18rem;''>"
+          heroHTMLitem+="<div class='card-body'>"
+           heroHTMLitem+="<h5 class='card-title'>"+ite.title+"</h5>"
+           heroHTMLitem+="<a href='blogs.html' class='card-link'> read more..</a>"
+         heroHTMLitem+= "<p class='card-text'>"+ite.content+"</p>"
+       
+         heroHTMLitem+="</div></div><div></div>"
+         
+       
+  })
+  $("#show-heross").html(heroHTMLitem)
+  })
+  
+  })
+  })}
+  </script>
+<div class="container">
+  <div class='row' >
+   <div class='card bg-light mb-3' style='height: 3rem; width: 12rem;'>
+   <div class='card-body'>
+<h5 class='card-title'onclick='tra()' >Travel</h5>
+</div></div><div></div>
+<script>
+function tra(){
+  var heroReference=firebase.database().ref().child("blogs/")
+heroReference.on("value",function(snapshot){
+  snapshot.forEach(function(childsnapshot){
+    var item=childsnapshot.val()
+    item.key=childsnapshot.key
+    $("#show-heross").empty()
+          var heroHTMLitems="<h3>All sorted posts</h3>"
+
+var userRef=firebase.database().ref('blogs/'+item.key)
+userRef.orderByChild("category").equalTo("Travel").once('value',function(snapshot){
+  snapshot.forEach(function(childsnapshot){
+    var ite=childsnapshot.val()
+
+
+   console.log(ite)
+    heroHTMLitems+="<div class='row'><div class='card bg-light mb-3' style='width: 18rem;''>"
+          heroHTMLitems+="<div class='card-body'>"
+           heroHTMLitems+="<h5 class='card-title'>"+ite.title+"</h5>"
+           heroHTMLitems+="<a href='blogs.html' class='card-link'> read more..</a>"
+         heroHTMLitems+= "<p class='card-text'>"+ite.content+"</p>"
+       
+         heroHTMLitems+="</div></div><div></div>"
+         
+       
+  })
+  $("#show-heross").html(heroHTMLitems)
+})
+
+})
+})}
+</script>
+<div class="container">
+  <div class='row' >
+   <div class='card bg-light mb-3' style='height: 3rem; width: 12rem;'>
+   <div class='card-body'>
+<h5 class='card-title'onclick="fash()" >Fashion</h5>
+</div></div><div></div>
+<script>
+  function fash(){
+    var heroReference=firebase.database().ref().child("blogs/")
+  heroReference.on("value",function(snapshot){
+    snapshot.forEach(function(childsnapshot){
+      var item=childsnapshot.val()
+      item.key=childsnapshot.key
+      $("#show-heross").empty()
+          var heroHTMLitem="<h3>All sorted posts</h3>"
+  
+  var userRef=firebase.database().ref('blogs/'+item.key)
+  userRef.orderByChild("category").equalTo("Fashion").once('value',function(snapshot){
+    snapshot.forEach(function(childsnapshot){
+    var ite=childsnapshot.val()
+
+
+   console.log(ite)
+    heroHTMLitem+="<div class='row'><div class='card bg-light mb-3' style='width: 18rem;''>"
+          heroHTMLitem+="<div class='card-body'>"
+           heroHTMLitem+="<h5 class='card-title'>"+ite.title+"</h5>"
+           heroHTMLitem+="<a href='blogs.html' class='card-link'> read more..</a>"
+         heroHTMLitem+= "<p class='card-text'>"+ite.content+"</p>"
+       
+         heroHTMLitem+="</div></div><div></div>"
+         
+       
+  })
+  $("#show-heross").html(heroHTMLitem)
+  })
+  
+  })
+  })}
+  </script>
+<div class="container">
+  <div class='row' >
+   <div class='card bg-light mb-3' style='height: 3rem; width: 12rem;'>
+   <div class='card-body'>
+<h5 class='card-title' onclick="fit()">Fitness</h5>
+</div></div><div></div>
+<script>
+  function fit(){
+    var heroReference=firebase.database().ref().child("blogs/")
+  heroReference.on("value",function(snapshot){
+    snapshot.forEach(function(childsnapshot){
+      var item=childsnapshot.val()
+      item.key=childsnapshot.key
+      $("#show-heross").empty()
+          var heroHTMLitem="<h3>All sorted posts</h3>"
+  
+  var userRef=firebase.database().ref('blogs/'+item.key)
+  userRef.orderByChild("category").equalTo("Fitness").once('value',function(snapshot){
+    snapshot.forEach(function(childsnapshot){
+    var ite=childsnapshot.val()
+
+
+   console.log(ite)
+    heroHTMLitem+="<div class='row'><div class='card bg-light mb-3' style='width: 18rem;''>"
+          heroHTMLitem+="<div class='card-body'>"
+           heroHTMLitem+="<h5 class='card-title'>"+ite.title+"</h5>"
+           heroHTMLitem+="<a href='blogs.html' class='card-link'> read more..</a>"
+         heroHTMLitem+= "<p class='card-text'>"+ite.content+"</p>"
+       
+         heroHTMLitem+="</div></div><div></div>"
+         
+       
+  })
+  $("#show-heross").html(heroHTMLitem)
+  })
+  
+  })
+  })}
+  </script>
+<div class="container">
+  <div class='row' >
+   <div class='card bg-light mb-3' style='height: 3rem; width: 12rem;'>
+   <div class='card-body'>
+<h5 class='card-title' onclick="news()">News</h5>
+</div></div><div></div>
+<script>
+  function news(){
+    var heroReference=firebase.database().ref().child("blogs/")
+  heroReference.on("value",function(snapshot){
+    snapshot.forEach(function(childsnapshot){
+      var item=childsnapshot.val()
+      item.key=childsnapshot.key
+      $("#show-heross").empty()
+          var heroHTMLitem="<h3>All sorted posts</h3>"
+  
+  var userRef=firebase.database().ref('blogs/'+item.key)
+  userRef.orderByChild("category").equalTo("News").once('value',function(snapshot){
+    snapshot.forEach(function(childsnapshot){
+    var ite=childsnapshot.val()
+
+
+   console.log(ite)
+    heroHTMLitem+="<div class='row'><div class='card bg-light mb-3' style='width: 18rem;''>"
+          heroHTMLitem+="<div class='card-body'>"
+           heroHTMLitem+="<h5 class='card-title'>"+ite.title+"</h5>"
+           heroHTMLitem+="<a href='blogs.html' class='card-link'> read more..</a>"
+         heroHTMLitem+= "<p class='card-text'>"+ite.content+"</p>"
+       
+         heroHTMLitem+="</div></div><div></div>"
+         
+       
+  })
+  $("#show-heross").html(heroHTMLitem)
+  })
+  
+  })
+  })}
+  </script>
+<div class="container">
+  <div class='row' >
+   <div class='card bg-light mb-3' style='height: 3rem; width: 12rem;'>
+   <div class='card-body'>
+<h5 class='card-title'onclick="spo()" >Sports</h5>
+</div></div><div></div>
+<script>
+  function spo(){
+    var heroReference=firebase.database().ref().child("blogs/")
+  heroReference.on("value",function(snapshot){
+    snapshot.forEach(function(childsnapshot){
+      var item=childsnapshot.val()
+      item.key=childsnapshot.key
+      $("#show-heross").empty()
+          var heroHTMLitem="<h3>All sorted posts</h3>"
+  
+  var userRef=firebase.database().ref('blogs/'+item.key)
+  userRef.orderByChild("category").equalTo("Sports").once('value',function(snapshot){
+    snapshot.forEach(function(childsnapshot){
+    var ite=childsnapshot.val()
+
+
+   console.log(ite)
+    heroHTMLitem+="<div class='row'><div class='card bg-light mb-3' style='width: 18rem;''>"
+          heroHTMLitem+="<div class='card-body'>"
+           heroHTMLitem+="<h5 class='card-title'>"+ite.title+"</h5>"
+           heroHTMLitem+="<a href='blogs.html' class='card-link'> read more..</a>"
+         heroHTMLitem+= "<p class='card-text'>"+ite.content+"</p>"
+       
+         heroHTMLitem+="</div></div><div></div>"
+         
+       
+  })
+  $("#show-heross").html(heroHTMLitem)
+  })
+  
+  })
+  })}
+  </script>
+<div class="container">
+  <div class='row' >
+   <div class='card bg-light mb-3' style='height: 3rem; width: 12rem;'>
+   <div class='card-body'>
+<h5 class='card-title' onclick="cult()">Cultural</h5>
+</div></div><div></div>
+<script>
+  function cult(){
+    var heroReference=firebase.database().ref().child("blogs/")
+  heroReference.on("value",function(snapshot){
+    snapshot.forEach(function(childsnapshot){
+      var item=childsnapshot.val()
+      item.key=childsnapshot.key
+      $("#show-heross").empty()
+          var heroHTMLitem="<h3>All sorted posts</h3>"
+  
+  var userRef=firebase.database().ref('blogs/'+item.key)
+  userRef.orderByChild("category").equalTo("Cultural").once('value',function(snapshot){
+    snapshot.forEach(function(childsnapshot){
+    var ite=childsnapshot.val()
+
+
+   console.log(ite)
+    heroHTMLitem+="<div class='row'><div class='card bg-light mb-3' style='width: 18rem;''>"
+          heroHTMLitem+="<div class='card-body'>"
+           heroHTMLitem+="<h5 class='card-title'>"+ite.title+"</h5>"
+           heroHTMLitem+="<a href='blogs.html' class='card-link'> read more..</a>"
+         heroHTMLitem+= "<p class='card-text'>"+ite.content+"</p>"
+       
+         heroHTMLitem+="</div></div><div></div>"
+         
+       
+  })
+  $("#show-heross").html(heroHTMLitem)
+  })
+  
+  })
+  })}
+  </script>
+<div class="container">
+  <div class='row' >
+   <div class='card bg-light mb-3' style='height: 3rem; width: 12rem;'>
+   <div class='card-body'>
+<h5 class='card-title' onclick="poli()">Politics</h5>
+</div></div><div></div>
+<script>
+  function poli(){
+    var heroReference=firebase.database().ref().child("blogs/")
+  heroReference.on("value",function(snapshot){
+    snapshot.forEach(function(childsnapshot){
+      var item=childsnapshot.val()
+      item.key=childsnapshot.key
+      $("#show-heross").empty()
+          var heroHTMLitem="<h3>All sorted posts</h3>"
+  
+  var userRef=firebase.database().ref('blogs/'+item.key)
+  userRef.orderByChild("category").equalTo("Politics").once('value',function(snapshot){
+    snapshot.forEach(function(childsnapshot){
+    var ite=childsnapshot.val()
+
+
+   console.log(ite)
+    heroHTMLitem+="<div class='row'><div class='card bg-light mb-3' style='width: 18rem;''>"
+          heroHTMLitem+="<div class='card-body'>"
+           heroHTMLitem+="<h5 class='card-title'>"+ite.title+"</h5>"
+           heroHTMLitem+="<a href='blogs.html' class='card-link'> read more..</a>"
+         heroHTMLitem+= "<p class='card-text'>"+ite.content+"</p>"
+       
+         heroHTMLitem+="</div></div><div></div>"
+         
+       
+  })
+  $("#show-heross").html(heroHTMLitem)
+  })
+  
+  })
+  })}
+  </script>
+<div class="container">
+  <div class='row' >
+   <div class='card bg-light mb-3' style='height: 3rem; width: 12rem;'>
+   <div class='card-body'>
+<h5 class='card-title'onclick="pet()" >Pets</h5>
+</div></div><div></div>
+<script>
+  function pet(){
+    var heroReference=firebase.database().ref().child("blogs/")
+  heroReference.on("value",function(snapshot){
+    snapshot.forEach(function(childsnapshot){
+      var item=childsnapshot.val()
+      item.key=childsnapshot.key
+      $("#show-heross").empty()
+          var heroHTMLitem="<h3>All sorted posts</h3>"
+  
+  var userRef=firebase.database().ref('blogs/'+item.key)
+  userRef.orderByChild("category").equalTo("Pets").once('value',function(snapshot){
+    snapshot.forEach(function(childsnapshot){
+    var ite=childsnapshot.val()
+
+
+   console.log(ite)
+    heroHTMLitem+="<div class='row'><div class='card bg-light mb-3' style='width: 18rem;''>"
+          heroHTMLitem+="<div class='card-body'>"
+           heroHTMLitem+="<h5 class='card-title'>"+ite.title+"</h5>"
+           heroHTMLitem+="<a href='blogs.html' class='card-link'> read more..</a>"
+         heroHTMLitem+= "<p class='card-text'>"+ite.content+"</p>"
+       
+         heroHTMLitem+="</div></div><div></div>"
+         
+       
+  })
+  $("#show-heross").html(heroHTMLitem)
+  })
+  
+  })
+  })}
+  </script>
+
+   
+
 
 </body>
 <!-- <script src="js/jquery-3.3.1.min.js"></script>
